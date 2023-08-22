@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" """
+""" Module used to test  the base model """
 from models.base_model import BaseModel
 import unittest
 import datetime
@@ -9,10 +9,10 @@ import os
 
 
 class test_basemodel(unittest.TestCase):
-    """ """
+    """ Test class for base model """
 
     def __init__(self, *args, **kwargs):
-        """ """
+        """ Constructor for test_basemodel class """
         super().__init__(*args, **kwargs)
         self.name = 'BaseModel'
         self.value = BaseModel
@@ -97,3 +97,8 @@ class test_basemodel(unittest.TestCase):
         n = new.to_dict()
         new = BaseModel(**n)
         self.assertFalse(new.created_at == new.updated_at)
+
+
+
+if __name__ == "__main__":
+    unittest.main()
