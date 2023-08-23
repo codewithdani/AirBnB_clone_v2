@@ -168,3 +168,6 @@ class TestCommand(unittest.TestCase):
             self.console.onecmd('count User')
         output = self.mock_stdout.getvalue()
         self.assertEqual(output.strip(), '1')
+
+if __name__ == '__main__':
+    unittest.main()

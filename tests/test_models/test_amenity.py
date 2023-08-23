@@ -1,15 +1,11 @@
 #!/usr/bin/python3
-""" 
-unittest for amenity.py
-"""
+""" """
 from tests.test_models.test_base_model import test_basemodel
 from models.amenity import Amenity
 
 
 class test_Amenity(test_basemodel):
-    """
-    class to test amenity function	
-    """
+    """ """
 
     def __init__(self, *args, **kwargs):
         """ """

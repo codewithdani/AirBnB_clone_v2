@@ -13,12 +13,14 @@ class test_basemodel(unittest.TestCase):
     """ Test class for base model """
 
     def __init__(self, *args, **kwargs):
+        """ Constructor for test_basemodel class """
         super().__init__(*args, **kwargs)
         self.name = 'BaseModel'
         self.value = BaseModel
 
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db', "FileStorage")
     def setUp(self):
+        """ """
         pass
 
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db', "FileStorage")
@@ -30,11 +32,13 @@ class test_basemodel(unittest.TestCase):
 
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db', "FileStorage")
     def test_default(self):
+        """ """
         i = self.value()
         self.assertEqual(type(i), self.value)
 
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db', "FileStorage")
     def test_kwargs(self):
+        """ """
         i = self.value()
         copy = i.to_dict()
         new = BaseModel(**copy)
@@ -42,6 +46,7 @@ class test_basemodel(unittest.TestCase):
 
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db', "FileStorage")
     def test_kwargs_int(self):
+        """ """
         i = self.value()
         copy = i.to_dict()
         copy.update({1: 2})
@@ -50,6 +55,7 @@ class test_basemodel(unittest.TestCase):
 
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db', "FileStorage")
     def test_save(self):
+        """ Testing save """
         i = self.value()
         i.save()
         key = self.name + "." + i.id
@@ -59,40 +65,47 @@ class test_basemodel(unittest.TestCase):
 
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db', "FileStorage")
     def test_str(self):
+        """ """
         i = self.value()
         self.assertEqual(str(i), '[{}] ({}) {}'.format(self.name, i.id,
                          i.__dict__))
 
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db', "FileStorage")
     def test_todict(self):
+        """ """
         i = self.value()
         n = i.to_dict()
         self.assertEqual(i.to_dict(), n)
 
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db', "FileStorage")
     def test_kwargs_none(self):
+        """ """
         n = {None: None}
         with self.assertRaises(TypeError):
             new = self.value(**n)
 
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db', "FileStorage")
     def test_kwargs_one(self):
+        """ """
         n = {'Name': 'test'}
         with self.assertRaises(KeyError):
             new = self.value(**n)
 
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db', "FileStorage")
     def test_id(self):
+        """ """
         new = self.value()
         self.assertEqual(type(new.id), str)
 
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db', "FileStorage")
     def test_created_at(self):
+        """ """
         new = self.value()
         self.assertEqual(type(new.created_at), datetime.datetime)
 
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db', "FileStorage")
     def test_updated_at(self):
+        """ """
         new = self.value()
         self.assertEqual(type(new.updated_at), datetime.datetime)
 
