@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-unittests for setup_mysql_dev.sql
+unittest for setup_mysql_dev.sql
 """ 
 import unittest
 import pymysql
