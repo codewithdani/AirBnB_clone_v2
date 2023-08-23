@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-unittests to test setup_mysql_test.sql
+unittest to test setup_mysql_test.sql
 """
 import unittest
 import subprocess
