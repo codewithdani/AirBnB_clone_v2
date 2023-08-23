@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Unittest module for the console"""
+"""Unittest module for the console."""
 
 import unittest
 import os
