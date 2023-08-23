@@ -126,48 +126,5 @@ class TestCommand(unittest.TestCase):
         self.assertIsNotNone(HBNBCommand.do_update.__doc__)
         self.assertIsNotNone(HBNBCommand.emptyline.__doc__)
 
-   def test_do_create(self):
-        with patch('sys.stdout', self.mock_stdout):
-            self.console.onecmd('create User email="gui@hbtn.io" password="guipwd"
-				first_name="Guillaume" last_name="Snow"')
-        output = self.mock_stdout.getvalue()
-        self.assertTrue(output.strip().isalnum())
-
-    def test_do_show(self):
-        with patch('sys.stdout', self.mock_stdout):
-            self.console.onecmd('create User email="gui@hbtn.io" password="guipwd"
-				first_name="Guillaume" last_name="Snow"')
-            self.console.onecmd('show User {}'.format(output.strip()))
-        output = self.mock_stdout.getvalue()
-        self.assertIn('Guillaume', output)
-
-    def test_do_destroy(self):
-        with patch('sys.stdout', self.mock_stdout):
-            self.console.onecmd('create User email="gui@hbtn.io" password="guipwd"
-				first_name="Guillaume" last_name="Snow"')
-            obj_id = output.strip()
-            self.console.onecmd('destroy User {}'.format(obj_id))
-            self.console.onecmd('show User {}'.format(obj_id))
-        output = self.mock_stdout.getvalue()
-        self.assertEqual(output.strip(), '** no instance found **')
-
-    def test_do_all(self):
-        with patch('sys.stdout', self.mock_stdout):
-            self.console.onecmd('create User email="gui@hbtn.io" password="guipwd"
-				first_name="Guillaume" last_name="Snow"')
-            self.console.onecmd('create BaseModel')
-            self.console.onecmd('all User')
-        output = self.mock_stdout.getvalue()
-        self.assertIn('Guillaume', output)
-        self.assertNotIn('BaseModel', output)
-
-    def test_do_count(self):
-        with patch('sys.stdout', self.mock_stdout):
-            self.console.onecmd('create User email="gui@hbtn.io" password="guipwd"
-				first_name="Guillaume" last_name="Snow"')
-            self.console.onecmd('count User')
-        output = self.mock_stdout.getvalue()
-        self.assertEqual(output.strip(), '1')
-
 if __name__ == '__main__':
     unittest.main()
