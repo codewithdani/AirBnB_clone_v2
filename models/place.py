@@ -38,10 +38,9 @@ class Place(BaseModel, Base):
         reviews = relationship("Review", cascade='all, delete, delete-orphan',
                                backref="place")
 
-
         amenities = relationship("Amenity", secondary=place_amenity,
                                  viewonly=False,
-                                 back_populates="place_amenities")
+                                 back_populates="place_amenities)
 
     else:
         @property
@@ -60,7 +59,7 @@ class Place(BaseModel, Base):
                     result.append(elem)
             return (result)
 
-         @property
+        @property
         def amenities(self):
             """ Returns list of amenity ids """
             return self.amenity_ids
